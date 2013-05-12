@@ -35,49 +35,16 @@
     <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
   </head>
   <body>
-
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="#">Task Manage</a>
-          <div class="container nav-collapse">
-            <ul class="nav">
-              <li><%= link_to "New Task", new_task_path  %></li>
-              <li><%= link_to "Todo", todo_tasks_path  %></li>
-              <li><%= link_to "Done",  done_tasks_path %></li>
-            </ul>
-            <ul class="nav pull-right">
-              <% if current_user.nil? %>
-              <li><%= link_to "Log in", login_path %></li>
-              <li><%= link_to "Sign up", signup_path %></li>
-              <% else %>
-              <li><%= current_user.name %></li>
-              <% end %>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="container">
+      <%= render 'layouts/nav' %>
+      <div class="container">
       <div class="row">
         <div class="span9 offset1">
-          <div class="alert alert-info text-center span9">
-             <strong>Todo List</strong>
-          </div>
+          <%= render 'layouts/alert'  %>
           <%= yield %>
         </div>
       </div>
     </div>
-    <div class="foo">
-    <footer class="text-right">
-      <p style="margin-right:20px">&copy; Guitar House 2013</p>
-    </footer>
-    <%= javascript_include_tag "application" %>
     </div>
+    <%= javascript_include_tag "application" %>
   </body>
 </html>

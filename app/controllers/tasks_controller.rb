@@ -1,10 +1,12 @@
 class TasksController < ApplicationController
+  load_and_authorize_resource
+
   def todo
-    @tasks = Task.where(complete: false)
+    @tasks = current_user.tasks.where(complete: false)
   end
 
   def done
-    @tasks = Task.where(complete: true)
+    @tasks = current_user.tasks.where(complete: true)
   end
 
   def new
@@ -12,7 +14,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(params[:task])
+    @task = current_user.tasks.new(params[:task])
     if @task.save
       redirect_to todo_tasks_path, notice: "Created successfully"
     else
@@ -37,12 +39,14 @@ class TasksController < ApplicationController
   def destroy
     @task = Task.find(params[:id])
     @task.destroy
-    redirect_to :back, notice: "Destroyed successfully"
   end
 
   def finish
     @task = Task.find(params[:id])
-    @task.update_attributes(complete: true)
+    if @task.complete?
+      @task.update_attributes(complete: false) 
+    else
+      @task.update_attributes(complete: true)
+    end
   end
-
 end

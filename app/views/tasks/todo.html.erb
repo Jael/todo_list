@@ -1,2 +1,5 @@
-<h1>ToDos</h1>
-<%= render @tasks %>
+<h1>ToDos</h1> <hr />
+<div class="accordion" id="accordion2">
+  <%= render @tasks %>
+  <%= raw "<p class='muted'>List is blank now</p>" if @tasks.empty? %>
+</div>

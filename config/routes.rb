@@ -1,5 +1,5 @@
 GuitarHouse::Application.routes.draw do
-  root to: 'tasks#todo'
+  root to: 'tasks#home'
   get 'signup' => 'users#new', as: :signup
   get 'login' => 'sessions#new', as: :login
   match 'logout' => 'sessions#destroy', as: :logout
