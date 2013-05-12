@@ -3,6 +3,8 @@
     <div class="accordion-heading">
       <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%=task.id%>">
         <%= task.title %>
+        <div class="pull-right"><%= raw task.tags.map(&:name).map{|t|  link_to t, tag_with_todo_path(t), class: "label label-info"}.join(" ") unless task.complete? %></div>
+        <div class="pull-right"><%= raw task.tags.map(&:name).map{|t|  link_to t, tag_with_done_path(t), class: "label label-info"}.join(" ") if task.complete? %></div>
       </a>
     </div>
     <div id="collapse<%=task.id%>" class="accordion-body collapse">

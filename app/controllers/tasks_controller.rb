@@ -2,11 +2,13 @@ class TasksController < ApplicationController
   load_and_authorize_resource
 
   def todo
-    @tasks = current_user.tasks.where(complete: false)
+    @tasks = params[:tag] ? Task.tagged_with(params[:tag], current_user.id, false) :
+    current_user.tasks.where(complete: false)
   end
 
   def done
-    @tasks = current_user.tasks.where(complete: true)
+    @tasks = params[:tag] ? Task.tagged_with(params[:tag], current_user.id, true) :
+    current_user.tasks.where(complete: true)
   end
 
   def new
