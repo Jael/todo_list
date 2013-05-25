@@ -9,7 +9,7 @@
     </div>
     <div id="collapse<%=task.id%>" class="accordion-body collapse">
       <div class="accordion-inner">
-        <strong>Description: </strong><%= task.description %><br />
+        <strong>Description: </strong><%= raw task.description %><br />
         <div class="btn-group">
           <%= link_to "edit", edit_task_path(task), class: 'btn btn-small' if can? :update, task%> |
           <%= link_to "destroy", task, method: :delete, confirm: "Are you sure?", remote: true, class: 'btn btn-small' %>|

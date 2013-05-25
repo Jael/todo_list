@@ -14,6 +14,14 @@ group :assets do
   gem 'bootstrap-wysihtml5-rails'
 end
 
+group :test, :development do
+  gem 'rspec-rails'
+end
+group :test do
+  gem 'factory_girl_rails'
+  gem 'simplecov', require: false
+end
+
 gem 'jquery-rails'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'cancan'
